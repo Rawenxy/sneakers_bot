@@ -1,0 +1,8 @@
+.idea
+data
+.env
+.DS_Store
+data_g
+index.html
+config.py
+__pycache__/
