@@ -6,6 +6,7 @@ import flask
 from flask import Flask, request, Response
 
 
+
 def get_database():
     CONNECTION_STRING = config.CONNECTION_STRING
 
@@ -23,10 +24,12 @@ collection_name_w = dbname["shoes_w"]
 TG_TOKEN = config.TG_TOKEN
 bot = telebot.TeleBot(TG_TOKEN, parse_mode=None)
 
+
 app = Flask(__name__)
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
+    # return '<b>Hello man!</b>'
     if request.get('content-type') == 'application/json':
         update = telebot.types.Update.de_json(request.stream.read().decode('utf-8'))
         bot.process_new_updates([update])
