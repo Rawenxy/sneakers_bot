@@ -2,6 +2,8 @@ import telebot
 from telebot import types
 from pymongo import MongoClient
 import config
+import flask
+from flask import Flask, request, Response
 
 
 def get_database():
@@ -19,8 +21,23 @@ dbname = get_database()
 collection_name_w = dbname["shoes_w"]
 
 TG_TOKEN = config.TG_TOKEN
-
 bot = telebot.TeleBot(TG_TOKEN, parse_mode=None)
+
+app = Flask(__name__)
+
+@app.route('/', methods=['POST', 'GET'])
+def index():
+    if request.get('content-types') == 'application/json':
+        update = telebot.types.Update.de_json(request.stream.read().decode('utf-8'))
+        bot.process_new_updates([update])
+        return ''
+    else:
+        flask.abort(403)
+    if request.method == 'POST':
+        return Response('ok', status=200)
+    else:
+        return ' '
+
 
 
 @bot.message_handler(commands=['start'])
@@ -83,9 +100,9 @@ def sneakers_find(message):
                                     'Выбери ценовую категорию', reply_markup=markup)
 
         if message.text in prices_categories:
-            print("mt", message.text)
-            print("message.chat.id", message.chat.id)
-            print("message.text", message.text)
+            # print("mt", message.text)
+            # print("message.chat.id", message.chat.id)
+            # print("message.text", message.text)
 
             price_selected[message.chat.id] = message.text
 
@@ -122,4 +139,6 @@ def sneakers_find(message):
         bot.send_message(message.chat.id, 'Что-то не так, перезапусти меня с помошью /start')
 
 
-bot.polling()
+
+if __name__ == '__main__':
+    app.run()
