@@ -6,3 +6,4 @@ data_g
 index.html
 config.py
 __pycache__/
+Dockerfile
