@@ -4,6 +4,18 @@
 
 ## How to use?
 
-1. Change TG_TOKEN, CONNTCTION_STRING
-2. database - MongoDB
-3. install requirements.txt
+Use the [pip](https://pip.pypa.io/en/stable/) package manager to install dependencies for the project
+
+```bash
+pip install -r requirements.txt
+```
+You need to create your own config.py the file in which the secret of the moon will be TG_TOKEN, CONNECTION_STRING(for MongoDB)
+
+## How to use Mongo DB?
+
+[Docs](https://www.mongodb.com/docs/) Mongo DB
+
+
+
+
+
