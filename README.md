@@ -9,6 +9,7 @@ Use the [pip](https://pip.pypa.io/en/stable/) package manager to install depende
 ## bot.polling() or set_webhook
 
 You can use both methods for the bot to work, I recommend set_webhook for deployment, and if you want to run it locally on your computer, you can do bot.polling()
+You can read more about set_webhooks and bot.polling [here](https://core.telegram.org)
 
 ### set_webhook:
 
@@ -41,12 +42,14 @@ if __name__ == '__main__':
    bot.polling()
 ```
 
+You need to create your own config.py the file in which the secret of the moon will be TG_TOKEN, CONNECTION_STRING(for MongoDB)
 
+You also need to install dependencies:
 
 ```bash
 pip install -r requirements.txt
 ```
-You need to create your own config.py the file in which the secret of the moon will be TG_TOKEN, CONNECTION_STRING(for MongoDB)
+
 
 ## How to use Mongo DB?
 
